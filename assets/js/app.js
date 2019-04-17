@@ -24,3 +24,30 @@ navigator.geolocation.clearWatch(watchID);
 function errorCallback(error) {
   alert('ERROR(' + error.code + '): ' + error.message);
 };
+// grab the latitude and longitude from the user
+//add event listner to the button to be clicked 
+document.querySelector("#clickMe").addEventListener("click",function(event){
+  event.preventDefault();
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+var latitude,longitude;
+
+function success(pos) {
+  var crd = pos.coords;
+  latitude = crd.latitude;
+  longitude = crd.longitude;
+
+  console.log('Your current position is:');
+  console.log(`Latitude : ${latitude}`);
+  console.log(`Longitude: ${longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+}
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+navigator.geolocation.getCurrentPosition(success, error, options);})

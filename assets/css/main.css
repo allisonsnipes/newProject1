@@ -22,7 +22,7 @@ footer {
 
 .signIn {
   margin: auto;
-}
+
 .clearfix {
   overflow: auto;}*/
   
@@ -40,3 +40,7 @@ footer {
     color: black;
     text-align: center;
  }
+.img-fluid{
+  width: 20% ;
+  height:auto;
+}

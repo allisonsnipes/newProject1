@@ -1,4 +1,4 @@
-* {
+/* {
   font-family: 'Abril Fatface',
   cursive;
   background-color: deepskyblue;
@@ -8,7 +8,6 @@
 body {
   background-color: beige;
 }
-
 footer {
   margin: auto;
   text-align: center;
@@ -19,6 +18,25 @@ footer {
   bottom: 0;
 }
 
+
+
 .signIn {
   margin: auto;
 }
+.clearfix {
+  overflow: auto;}*/
+  
+  
+  .right{
+    float: right;
+  }
+
+  .footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(139, 136, 136);
+    color: black;
+    text-align: center;
+ }

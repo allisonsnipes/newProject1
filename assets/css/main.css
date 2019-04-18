@@ -22,3 +22,7 @@ footer {
 .signIn {
   margin: auto;
 }
+.img-fluid{
+  width: 20% ;
+  height:auto;
+}

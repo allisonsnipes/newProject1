@@ -41,17 +41,19 @@
 
     <div class="container">
       <fieldset>
-          <form action="/action_page.php" class="signUp">
+        <form action="/action_page.php" class="signUp">
+          <br>
+          <br>
+            <label id="">Your Name:</label>
+          <input type="text" id="userName" placeholder="John Doe" required>
             <br>
             <br>
-            Your Name:
-            <input type="text" placeholder="John Doe" required>
-              <br>
-              <br>
-            Email:
-              <input type="text" placeholder="example@gmail.com" required>
-              <br>
-              <br>
+            
+            
+            <label id="">Email:</label>
+            <input type="text" id="userEmail" placeholder="example@gmail.com" required>
+            <br>
+            <br>
             Country of Origin:
               <label for="country">Country</label>
               <span style="color: red !important; display: inline; float: none;">*</span>
@@ -303,19 +305,20 @@
               </select>
               <br>
               <br>
-            Emergancy Contact #1:
-              <input type="text" placeholder="000-000-0000" required>
+              <label id="">Emergancy Contact #1:</label>
+              <input type="number" id="emergencyNum1" placeholder="000-000-0000" required>
               <br>
               <br>
-            Emergancy Contact #2:
-              <input type="text" placeholder="000-000-0000" required>
+            
+            <label id="">Emergancy Contact #2:</label>
+              <input type="text" id="emergencyNum2" placeholder="000-000-0000" required>
               <br>
               <br>
-            Emergancy Contact #3:
-              <input type="text" placeholder="000-000-0000">
+              <label id="">Emergancy Contact #3:</label>
+              <input type="text" id="emergencyNum3" placeholder="000-000-0000">
               <br>
               <br>
-            <button type="submit"> Sign Up </button>
+            <button type="submit" id="submit"> Sign Up </button>
           </form>
         </fieldset>
       </div>

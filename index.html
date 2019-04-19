@@ -16,11 +16,12 @@
 
   <!--fonts, css, title -->
   <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
-  <link href="assets/css/main.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
   <title>Welcome to AYS</title>
 </head>
 
 <body>
+    
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
       aria-expanded="false" aria-label="Toggle navigation">
@@ -36,21 +37,49 @@
         <li class="nav-item">
           <a class="nav-link" href="signUp.html">Sign Up</a>
         </li>
-
+        
+        
         <li class="nav-item">
-          <a class="nav-link" href="about.html">About Us</a>
+          <a class="nav-link left" href="about.html">About Us</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="contact.html">Contact Us</a>
+          <a class="nav-link"  href="contact.html">Contact Us</a>
+        
         </li>
         </li>
       </ul>
     </div>
+    </div>
   </nav>
 
-  <div class="container">
-    <fieldset>
+  <div class="container mx-10 px-10 py-2 my-3" style="border: 3px solid rgb(167, 211, 211); box-shadow: 5px 5px 5px 5px; width: 65%;">
+      <form>
+          <div class="form-group" style="width: 95%;">
+              <label for="exampleInputEmail1">User Name</label>
+              <input type="text" class="form-control" id="exampleInputName" aria-describedby="emailHelp" placeholder="User Name">
+              
+            </div>
+          <div class="form-group" style="width: 95%;">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group" style="width: 95%;">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+      
+        
+
+    <!---<fieldset>
       <form action="/action_page.php" class="signIn">
         <br>
         <input type="text" placeholder="John Doe" value="John Doe" required>
@@ -59,12 +88,16 @@
         <br>
         <button type="submit"> Login </button>
       </form>
-    </fieldset>
-
+    </fieldset>-->
+    <div class="footer">
+        <p>&copy;2019</p>
+      </div>
   </div>
 
-  <footer class="bottom"> Copyright 2019</footer>
+  
 
+ <!--- <footer class="bottom"> Copyright 2019</footer>-->
+ 
 </body>
 
 <!-- js and boostrap -->
@@ -74,6 +107,11 @@
   crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
   crossorigin="anonymous"></script>
+<<<<<<< HEAD
 <!-- seperate js for everyone -->
 <script src="assets/js/app.js"></script> 
 </html>
+=======
+
+<script src="assets/js/app.js"></script> </html>
+>>>>>>> f6a9d90ab831666eafd5f44cfd5d2cacd9e8344f

@@ -23,30 +23,79 @@ navigator.geolocation.clearWatch(watchID);
 function errorCallback(error) {
   alert('ERROR(' + error.code + '): ' + error.message);
 };
-// grab the latitude and longitude from the user
-//add event listner to the button to be clicked 
-document.querySelector("#clickMe").addEventListener("click",function(event){
-  event.preventDefault();
-var options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0
-};
-var latitude,longitude;
 
-function success(pos) {
-  var crd = pos.coords;
-  latitude = crd.latitude;
-  longitude = crd.longitude;
+//solomon new code
 
-  console.log('Your current position is:');
-  console.log(`Latitude : ${latitude}`);
-  console.log(`Longitude: ${longitude}`);
-  console.log(`More or less ${crd.accuracy} meters.`);
+
+ // Initialize Firebase
+ var config = {
+   apiKey: "AIzaSyAJgisdK-RAywXzezF79hrTj5wQykJ9rek",
+   authDomain: "team2-48c79.firebaseapp.com",
+   databaseURL: "https://team2-48c79.firebaseio.com",
+   projectId: "team2-48c79",
+   storageBucket: "",
+   messagingSenderId: "142646288799"
+ };
+ firebase.initializeApp(config);
+
+     
+      var database = firebase.database();
+     
+      // 2. when sign up button clicks
+      document.querySelector("#submit").addEventListener("click", function(event) {
+       event.preventDefault();
+     
+       // Grabs user input
+       var userName = document.querySelector("#userName").value.trim();
+       var userEmail = document.querySelector("#userEmail").value.trim();
+       var userCountry = document.querySelector("#userCountry").value.trim(); 
+       var userEmergencyNum1 = document.querySelector("#emergencyNum1").value.trim();
+       var userEmergencyNum2 = document.querySelector("#emergencyNum2").value.trim();
+       var userEmergencyNum3 = document.querySelector("#emergencyNum3").value.trim(); 
+     
+       // Creates local object
+       var newUser = {
+    name: userName,
+    email: userEmail,
+    country: userCountry,
+    contact1: useremErgencyNum1,
+    contact2: userEmergencyNum2,
+    contact3: userEmergencyNum3,
+       };
+
+       // Uploads newuser data to the database
+  database.ref().push(newUser);
+
+  // Clears all the input-boxes
+  document.querySelector("#userName").value = "";
+  document.querySelector("#userEmail").value = "";
+  document.querySelector("#userCountry").value = "";
+  document.querySelector("#emergencyNum1").value = "";
+  document.querySelector("#emergencyNum2").value = "";
+  document.querySelector("#emergencyNum3").value = "";
+});
+
+// 3. Create Firebase event for adding new-user to the database
+database.ref().on("child_added", function(childSnapshot) {
+  console.log(childSnapshot.val());
+
+  // Store everything into a variable.
+  var userName = childSnapshot.val().name;
+  var userEmail = childSnapshot.val().email;
+  var userCountry = childSnapshot.val().country;
+  var usercontact1 = childSnapshot.val().contact1;
+  var usercontact2 = childSnapshot.val().contact2;
+  var usercontact3 = childSnapshot.val().contact3;
+
+  
+
+  
 }
 
-function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-}
+  
 
-navigator.geolocation.getCurrentPosition(success, error, options);})
+
+
+     
+     </script>
+

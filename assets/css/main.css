@@ -22,7 +22,7 @@ footer {
 
 .signIn {
   margin: auto;
-}
+
 .clearfix {
   overflow: auto;}*/
   
@@ -60,4 +60,9 @@ footer {
   width: 50%;
   background: #BCC7D9;
   box-shadow: inset  3px 4px  5px 6px rgba(0, 0, 0, 0.611);
+=======
+.img-fluid{
+  width: 20% ;
+  height:auto;
+
 }

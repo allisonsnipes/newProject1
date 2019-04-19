@@ -3,8 +3,7 @@ document.querySelector("#container").addEventListener("click", function(event) {
   if(event.target.tagName == "BUTTON")
 }
 
-// the geolocating API
-//getcurrentposition method with the parameter of position
+// the geolocating API from MDN geolocat --getcurrentposition method with the parameter of position
 navigator.geolocation.getCurrentPosition(function(position) {
   //the do something function will execute when the location is obtained
   //defining instrustions based on the property of the coordinates of long and lat

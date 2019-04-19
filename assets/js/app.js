@@ -90,18 +90,12 @@ document.querySelector("#submit").addEventListener("click", function(event) {
   var userName = document.querySelector("#userName").value.trim();
   var userEmail = document.querySelector("#userEmail").value.trim();
   var userCountry = document.querySelector("#userCountry").value.trim(); 
-  var userEmergencyNum1 = document.querySelector("#emergencyNum1").value.trim();
-  var userEmergencyNum2 = document.querySelector("#emergencyNum2").value.trim();
-  var userEmergencyNum3 = document.querySelector("#emergencyNum3").value.trim(); 
      
        // Creates local object
     var newUser = {
     name: userName,
     email: userEmail,
     country: userCountry,
-    contact1: useremErgencyNum1,
-    contact2: userEmergencyNum2,
-    contact3: userEmergencyNum3,
        };
 
        // Uploads newuser data to the database
@@ -111,9 +105,6 @@ document.querySelector("#submit").addEventListener("click", function(event) {
   document.querySelector("#userName").value = "";
   document.querySelector("#userEmail").value = "";
   document.querySelector("#userCountry").value = "";
-  document.querySelector("#emergencyNum1").value = "";
-  document.querySelector("#emergencyNum2").value = "";
-  document.querySelector("#emergencyNum3").value = "";
 });
 
 // 3. Create Firebase event for adding new-user to the database
@@ -124,9 +115,6 @@ database.ref().on("child_added", function(childSnapshot) {
   var userName = childSnapshot.val().name;
   var userEmail = childSnapshot.val().email;
   var userCountry = childSnapshot.val().country;
-  var usercontact1 = childSnapshot.val().contact1;
-  var usercontact2 = childSnapshot.val().contact2;
-  var usercontact3 = childSnapshot.val().contact3;
 
   
 

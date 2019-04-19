@@ -68,7 +68,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 
- // Initialize Firebase
+ // Initializing Firebase for missing person
   var config = {
     apiKey: "AIzaSyBrT_DAlHkM8H0XTeHW7twLnKWGaijaMTk",
     authDomain: "newproject1-5e689.firebaseapp.com",
@@ -87,7 +87,7 @@ document.querySelector("#submit").addEventListener("click", function(event) {
   event.preventDefault();
 
   // Grabs user input
-  var userName = document.querySelector("#userName").value.trim();
+  var userName = document.querySelector("#nameInput").value.trim();
   var userEmail = document.querySelector("#userEmail").value.trim();
   var userCountry = document.querySelector("#userCountry").value.trim(); 
      

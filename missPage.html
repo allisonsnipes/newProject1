@@ -1,35 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <meta charset="utf-8">
-    <title>Page to Display Missed person</title>
-    <style>
-            /* Always set the map height explicitly to define the size of the div
-             * element that contains the map. */
-            #map {
-              height:50%;
-              width: 50%;
-            }
-            /* Optional: Makes the sample page fill the window. */
-            html, body {
-              height: 100%;
-              widows: 50;
-              margin: 0;
-              padding: 0;
-            }
-          </style>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- bootstrap and firebase-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- 
+  <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script> -->
+
+
+  <!--fonts, css, title -->
+  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <title>Demo Page</title>
 </head>
+
 <body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+
+                  <li class="nav-item active">
+                      <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                  </li>
+
+                  <li class="nav-item">
+                      <a class="nav-link" href="signUp.html">Sign Up</a>
+                  </li>
+
+
+                  <li class="nav-item">
+                      <a class="nav-link left" href="about.html">About Us</a>
+                  </li>
+
+                  <li class="nav-item">
+                      <a class="nav-link" href="contact.html">Contact Us</a>
+
+                  </li>
+                  </li>
+              </ul>
+          </div>
+      </nav>
     <div class="container-fluid">
-        <!-- here the navbar goes -->
-        <!-- <div>
-            <!-- photo of the missed person from user input -->
-            <img src="assets/images/missing.jpg " alt="missed person image" class="img-fluid">
+       
         </div>
-        <p id="city">city:</p>
-        <p id="country">country:</p>
         <div id="map">
 
         </div>

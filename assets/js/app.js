@@ -3,7 +3,7 @@ document.querySelector("#container").addEventListener("click", function(event) {
   if(event.target.tagName == "BUTTON")
 }
 
-// the geolocating API from MDN geolocat --getcurrentposition method with the parameter of position
+// the geolocating API from MDN geolocate --getcurrentposition method with the parameter of position
 navigator.geolocation.getCurrentPosition(function(position) {
   //the do something function will execute when the location is obtained
   //defining instrustions based on the property of the coordinates of long and lat
@@ -28,33 +28,33 @@ function errorCallback(error) {
 
 
  // Initialize Firebase
- var config = {
-   apiKey: "AIzaSyAJgisdK-RAywXzezF79hrTj5wQykJ9rek",
-   authDomain: "team2-48c79.firebaseapp.com",
-   databaseURL: "https://team2-48c79.firebaseio.com",
-   projectId: "team2-48c79",
-   storageBucket: "",
-   messagingSenderId: "142646288799"
- };
- firebase.initializeApp(config);
+  var config = {
+    apiKey: "AIzaSyBrT_DAlHkM8H0XTeHW7twLnKWGaijaMTk",
+    authDomain: "newproject1-5e689.firebaseapp.com",
+    databaseURL: "https://newproject1-5e689.firebaseio.com",
+    projectId: "newproject1-5e689",
+    storageBucket: "newproject1-5e689.appspot.com",
+    messagingSenderId: "380166051513"
+  };
+  firebase.initializeApp(config);
 
      
       var database = firebase.database();
      
-      // 2. when sign up button clicks
-      document.querySelector("#submit").addEventListener("click", function(event) {
-       event.preventDefault();
-     
-       // Grabs user input
-       var userName = document.querySelector("#userName").value.trim();
-       var userEmail = document.querySelector("#userEmail").value.trim();
-       var userCountry = document.querySelector("#userCountry").value.trim(); 
-       var userEmergencyNum1 = document.querySelector("#emergencyNum1").value.trim();
-       var userEmergencyNum2 = document.querySelector("#emergencyNum2").value.trim();
-       var userEmergencyNum3 = document.querySelector("#emergencyNum3").value.trim(); 
+// 2. when sign up button clicks
+document.querySelector("#submit").addEventListener("click", function(event) {
+  event.preventDefault();
+
+  // Grabs user input
+  var userName = document.querySelector("#userName").value.trim();
+  var userEmail = document.querySelector("#userEmail").value.trim();
+  var userCountry = document.querySelector("#userCountry").value.trim(); 
+  var userEmergencyNum1 = document.querySelector("#emergencyNum1").value.trim();
+  var userEmergencyNum2 = document.querySelector("#emergencyNum2").value.trim();
+  var userEmergencyNum3 = document.querySelector("#emergencyNum3").value.trim(); 
      
        // Creates local object
-       var newUser = {
+    var newUser = {
     name: userName,
     email: userEmail,
     country: userCountry,
@@ -91,11 +91,4 @@ database.ref().on("child_added", function(childSnapshot) {
 
   
 }
-
-  
-
-
-
-     
-     </script>
 

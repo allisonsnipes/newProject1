@@ -1,9 +1,11 @@
-//code for login button pressed to do geo locate
+// MDN GEOLOCATION API: HTML5 geolocation.
+
+//starts when user clicks within the container
 document.querySelector("#container").addEventListener("click", function(event) {
   if(event.target.tagName == "BUTTON")
 }
 
-// the geolocating API from MDN geolocate --getcurrentposition method with the parameter of position
+// getscurrentposition method with the parameter of position
 navigator.geolocation.getCurrentPosition(function(position) {
   //the do something function will execute when the location is obtained
   //defining instrustions based on the property of the coordinates of long and lat
@@ -24,21 +26,6 @@ function errorCallback(error) {
   alert('ERROR(' + error.code + '): ' + error.message);
 };
 
-//Google API start by declare the variables
-var map, infoWindow;
-
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {
-      lat: -34.397,
-      lng: 150.644
-    },
-    zoom: 15
-  });
-
-infoWindow = new google.maps.InfoWindow;
-
-  // Try HTML5 geolocation.
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(function (position) {
     var pos = {
@@ -54,21 +41,34 @@ if (navigator.geolocation) {
     handleLocationError(true, infoWindow, map.getCenter());
   });
 } else {
-  // Browser doesn't support Geolocation
+  // error handler if the browser doesn't support Geolocation
   handleLocationError(false, infoWindow, map.getCenter());
 }
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-infoWindow.setPosition(pos);
-infoWindow.setContent(browserHasGeolocation ?
-  'Error: The Geolocation service failed.' :
-  'Error: Your browser doesn\'t support geolocation.');
-infoWindow.open(map);
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+    'Error: The Geolocation service failed.' :
+    'Error: Your browser doesn\'t support geolocation.');
+  infoWindow.open(map);
 }
 
+//Google API: start by declaring the variables
+var map, infoWindow;
 
-// Initializing Firebase for missing person
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {
+      lat: -34.397,
+      lng: 150.644
+    },
+    zoom: 15
+  });
+
+infoWindow = new google.maps.InfoWindow;
+
+// FIREBASE: initializing Firebase for missing person
 var config = {
   apiKey: "AIzaSyBrT_DAlHkM8H0XTeHW7twLnKWGaijaMTk",
   authDomain: "newproject1-5e689.firebaseapp.com",
@@ -79,32 +79,40 @@ var config = {
 };
 
 firebase.initializeApp(config);
-
+// Clears all the input-boxes
+var userName = "";
+var userEmail = "";
+var userCountry = "";
+var userEvent = "";
 var database = firebase.database();
+// document.querySelector("#userName").value = "";
+// document.querySelector("#userEmail").value = "";
+// document.querySelector("#userCountry").value = "";
+
+
      
 // 2. when sign up button clicks
-document.querySelector("#submit").addEventListener("click", function(event) {
+document.querySelector("#addUser").addEventListener("click", function (event) {
   event.preventDefault();
 
   // Grabs user input
   var userName = document.querySelector("#nameInput").value.trim();
-  var userEmail = document.querySelector("#userEmail").value.trim();
-  var userCountry = document.querySelector("#userCountry").value.trim(); 
+  var userEmail = document.querySelector("#emailInput").value.trim();
+  var userCountry = document.querySelector("#countySelection").value.trim();
+  var userEvent = document.querySelector("#commentInput").value.trim();
      
-       // Creates local object
+  // Creates local object
     var newUser = {
     name: userName,
     email: userEmail,
     country: userCountry,
+    events: userEvent
        };
 
        // Uploads newuser data to the database
   database.ref().push(newUser);
 
-  // Clears all the input-boxes
-  document.querySelector("#userName").value = "";
-  document.querySelector("#userEmail").value = "";
-  document.querySelector("#userCountry").value = "";
+
 });
 
 // 3. Create Firebase event for adding new-user to the database

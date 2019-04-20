@@ -85,6 +85,11 @@ var userEmail = "";
 var userCountry = "";
 var userEvent = "";
 var database = firebase.database();
+// document.querySelector("#userName").value = "";
+// document.querySelector("#userEmail").value = "";
+// document.querySelector("#userCountry").value = "";
+
+
      
 // 2. when sign up button clicks
 document.querySelector("#addUser").addEventListener("click", function (event) {
@@ -108,15 +113,7 @@ document.querySelector("#addUser").addEventListener("click", function (event) {
   database.ref().push(newUser);
 });
 
-database.ref().on("child_added", function(snapshot) {
-  document.querySelector(".well").append("<p>" + snapshot.val().name+"<p>");
-  document.querySelector(".well").append("<p>" + snapshot.val().email+ "<p>");
-  document.querySelector(".well").append("<p>" + snapshot.val().country+ "<p>");
-  document.querySelector(".well").append("<p>" + snapshot.val().events+ "<p>");
-  document.querySelector(".well").append("<p>" + snapshot.val().dateAdded+ "<p>");
-  document.querySelector(".well").append("<hr>");
-
-})
+firebase
 // 3. Create Firebase event for adding new-user to the database
 database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(childSnapshot) {
   console.log(childSnapshot.val());

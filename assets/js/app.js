@@ -120,8 +120,11 @@ document.querySelector("#addUser").addEventListener("click", function (event) {
 //listens to occupy well div with information
 firebase.database().ref().on("child_added", function (snapshot){
   document.querySelector(".well").append("Name: " + snapshot.val().userName+ "  ");
+  document.querySelector(".well").append("\n\n\n");
   document.querySelector(".well").append("User email: " + snapshot.val().userEmail + " ");
+  document.querySelector(".well").append("\n\n\n");
   document.querySelector(".well").append("Resident Country: " + snapshot.val().userCountry + " ");
+  document.querySelector(".well").append("\n\n\n");
   document.querySelector(".well").append("Alert: " + snapshot.val().userEvent + " ");
   document.querySelector(".well").append("\n\n\n");
 })

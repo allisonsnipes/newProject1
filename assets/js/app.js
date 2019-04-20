@@ -92,28 +92,31 @@ var userName = "";
 var userEmail = "";
 var userCountry = "";
 var userEvent = "";
-var database = firebase.database();
+// var database = firebase.database();
      
 // 2. when sign up button clicks
 document.querySelector("#addUser").addEventListener("click", function (event) {
   event.preventDefault();
 
-  // Grabs user input
+  // Grabs user values enter by elements
   var userName = document.querySelector("#nameInput").value.trim();
   var userEmail = document.querySelector("#emailInput").value.trim();
   var userCountry = document.querySelector("#countySelection").value.trim();
   var userEvent = document.querySelector("#commentInput").value.trim();
-     
-  // Creates local object
-    var newUser = {
-    name: userName,
-    email: userEmail,
-    country: userCountry,
-    events: userEvent,
+  
+  //push variables created to firebase
+  database.database.ref().push({
+    //here we set the variables to the specific key to create key/value pairs
+    name:userName,
+    email:userEmail,
+    country:userCountry,
+    events:userEvent,
     dateAdded: firebase.database.ServerValue.TIMESTAMP
-  };
+  })
   // Uploads newuser data to the database
-  database.ref().push(newUser);
+  })
+   
+  
 });
 
 database.ref().on("child_added", function(snapshot) {

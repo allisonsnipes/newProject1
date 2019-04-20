@@ -1,9 +1,11 @@
-//code for login button pressed to do geo locate
+// MDN GEOLOCATION API: HTML5 geolocation.
+
+//starts when user clicks within the container
 document.querySelector("#container").addEventListener("click", function(event) {
   if(event.target.tagName == "BUTTON")
 }
 
-// the geolocating API from MDN geolocate --getcurrentposition method with the parameter of position
+// getscurrentposition method with the parameter of position
 navigator.geolocation.getCurrentPosition(function(position) {
   //the do something function will execute when the location is obtained
   //defining instrustions based on the property of the coordinates of long and lat
@@ -24,71 +26,144 @@ function errorCallback(error) {
   alert('ERROR(' + error.code + '): ' + error.message);
 };
 
-//solomon new code
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function (position) {
+    var pos = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    };
+
+    infoWindow.setPosition(pos);
+    infoWindow.setContent('Missed person last Address');
+    infoWindow.open(map);
+    map.setCenter(pos);
+  }, function () {
+    handleLocationError(true, infoWindow, map.getCenter());
+  });
+} else {
+  // error handler if the browser doesn't support Geolocation
+  handleLocationError(false, infoWindow, map.getCenter());
+}
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+    'Error: The Geolocation service failed.' :
+    'Error: Your browser doesn\'t support geolocation.');
+  infoWindow.open(map);
+}
+
+//Google API: start by declaring the variables
+var map, infoWindow;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {
+      lat: -34.397,
+      lng: 150.644
+    },
+    zoom: 15
+  });
+
+infoWindow = new google.maps.InfoWindow;
+
+// FIREBASE: initializing Firebase for missing person
+var config = {
+  apiKey: "AIzaSyBrT_DAlHkM8H0XTeHW7twLnKWGaijaMTk",
+  authDomain: "newproject1-5e689.firebaseapp.com",
+  databaseURL: "https://newproject1-5e689.firebaseio.com",
+  projectId: "newproject1-5e689",
+  storageBucket: "newproject1-5e689.appspot.com",
+  messagingSenderId: "380166051513"
+};
+
+firebase.initializeApp(config);
+// Clears all the input-boxes
+var userName = "";
+var userEmail = "";
+var userCountry = "";
+var userEvent = "";
+var database = firebase.database();
+// document.querySelector("#userName").value = "";
+// document.querySelector("#userEmail").value = "";
+// document.querySelector("#userCountry").value = "";
 
 
- // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBrT_DAlHkM8H0XTeHW7twLnKWGaijaMTk",
-    authDomain: "newproject1-5e689.firebaseapp.com",
-    databaseURL: "https://newproject1-5e689.firebaseio.com",
-    projectId: "newproject1-5e689",
-    storageBucket: "newproject1-5e689.appspot.com",
-    messagingSenderId: "380166051513"
-  };
-  firebase.initializeApp(config);
-
-     
-      var database = firebase.database();
      
 // 2. when sign up button clicks
-document.querySelector("#submit").addEventListener("click", function(event) {
+document.querySelector("#addUser").addEventListener("click", function (event) {
   event.preventDefault();
 
   // Grabs user input
-  var userName = document.querySelector("#userName").value.trim();
-  var userEmail = document.querySelector("#userEmail").value.trim();
-  var userCountry = document.querySelector("#userCountry").value.trim(); 
-  var userEmergencyNum1 = document.querySelector("#emergencyNum1").value.trim();
-  var userEmergencyNum2 = document.querySelector("#emergencyNum2").value.trim();
-  var userEmergencyNum3 = document.querySelector("#emergencyNum3").value.trim(); 
+  var userName = document.querySelector("#nameInput").value.trim();
+  var userEmail = document.querySelector("#emailInput").value.trim();
+  var userCountry = document.querySelector("#countySelection").value.trim();
+  var userEvent = document.querySelector("#commentInput").value.trim();
      
-       // Creates local object
+  // Creates local object
     var newUser = {
     name: userName,
     email: userEmail,
     country: userCountry,
-    contact1: useremErgencyNum1,
-    contact2: userEmergencyNum2,
-    contact3: userEmergencyNum3,
-       };
-
-       // Uploads newuser data to the database
+    events: userEvent,
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+  };
+  // Uploads newuser data to the database
   database.ref().push(newUser);
-
-  // Clears all the input-boxes
-  document.querySelector("#userName").value = "";
-  document.querySelector("#userEmail").value = "";
-  document.querySelector("#userCountry").value = "";
-  document.querySelector("#emergencyNum1").value = "";
-  document.querySelector("#emergencyNum2").value = "";
-  document.querySelector("#emergencyNum3").value = "";
 });
 
+firebase
 // 3. Create Firebase event for adding new-user to the database
-database.ref().on("child_added", function(childSnapshot) {
+database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(childSnapshot) {
   console.log(childSnapshot.val());
 
   // Store everything into a variable.
   var userName = childSnapshot.val().name;
   var userEmail = childSnapshot.val().email;
   var userCountry = childSnapshot.val().country;
-  var usercontact1 = childSnapshot.val().contact1;
-  var usercontact2 = childSnapshot.val().contact2;
-  var usercontact3 = childSnapshot.val().contact3;
-
-  
-
-  
 }
 
+
+
+// // declare the variables
+// var map, infoWindow;
+
+// function initMap() {
+//   map = new google.maps.Map(document.getElementById('map'), {
+//     center: {
+//       lat: -34.397,
+//       lng: 150.644
+//     },
+//     zoom: 15
+//   });
+//   infoWindow = new google.maps.InfoWindow;
+
+//   // Try HTML5 geolocation.
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(function (position) {
+//       var pos = {
+//         lat: position.coords.latitude,
+//         lng: position.coords.longitude
+//       };
+
+//       infoWindow.setPosition(pos);
+//       infoWindow.setContent('Missed person last Address');
+//       infoWindow.open(map);
+//       map.setCenter(pos);
+//     }, function () {
+//       handleLocationError(true, infoWindow, map.getCenter());
+//     });
+//   } else {
+//     // Browser doesn't support Geolocation
+//     handleLocationError(false, infoWindow, map.getCenter());
+//   }
+// }
+
+// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+//   infoWindow.setPosition(pos);
+//   infoWindow.setContent(browserHasGeolocation ?
+//     'Error: The Geolocation service failed.' :
+//     'Error: Your browser doesn\'t support geolocation.');
+//   infoWindow.open(map);
+// }

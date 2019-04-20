@@ -117,12 +117,11 @@ document.querySelector("#addUser").addEventListener("click", function (event) {
 });
 
 database.ref().on("child_added", function(snapshot) {
-  document.querySelector(".well").append(snapshot.val().name);
-  document.querySelector(".well").append("<p>" + snapshot.val().email+ "<p>");
-  document.querySelector(".well").append("<p>" + snapshot.val().country+ "<p>");
-  document.querySelector(".well").append("<p>" + snapshot.val().events+ "<p>");
-  document.querySelector(".well").append("<p>" + snapshot.val().dateAdded+ "<p>");
-  document.querySelector(".well").append("<hr>");
+  document.querySelector(".well").append(<p> +snapshot.val());
+  // document.querySelector(".well").append(<p> + snapshot.val().country+ <p>);
+  // document.querySelector(".well").append(<p> + snapshot.val().events+ "<p>");
+  // document.querySelector(".well").append("<p>" + snapshot.val().dateAdded+ "<p>");
+  // document.querySelector(".well").append("<hr>");
 
 })
 // 3. Create Firebase event for adding new-user to the database

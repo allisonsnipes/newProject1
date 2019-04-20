@@ -77,27 +77,27 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow;
 };
 
-// FIREBASE: initializing Firebase for missing person
-var config = {
-  apiKey: "AIzaSyBrT_DAlHkM8H0XTeHW7twLnKWGaijaMTk",
-  authDomain: "newproject1-5e689.firebaseapp.com",
-  databaseURL: "https://newproject1-5e689.firebaseio.com",
-  projectId: "newproject1-5e689",
-  storageBucket: "newproject1-5e689.appspot.com",
-  messagingSenderId: "380166051513"
-};
 
-firebase.initializeApp(config);
-// Clears all the input-boxes
-var userName = "";
-var userEmail = "";
-var userCountry = "";
-var userEvent = "";
-// var database = firebase.database();
-     
 // 2. when sign up button clicks
-document.querySelector("#addUser").addEventListener("click", function (event) {
+document.querySelector("#addUser").addEventListener("click", function(event) {
   event.preventDefault();
+
+  var config = {
+    apiKey: "AIzaSyBrT_DAlHkM8H0XTeHW7twLnKWGaijaMTk",
+    authDomain: "newproject1-5e689.firebaseapp.com",
+    databaseURL: "https://newproject1-5e689.firebaseio.com",
+    projectId: "newproject1-5e689",
+    storageBucket: "newproject1-5e689.appspot.com",
+    messagingSenderId: "380166051513"
+  };
+
+  firebase.initializeApp(config);
+  // Clears all the input-boxes
+  var userName = "";
+  var userEmail = "";
+  var userCountry = "";
+  var userEvent = "";
+  // var database = firebase.database();
 
   // Grabs user values enter by elements
   var userName = document.querySelector("#nameInput").value.trim();
@@ -114,22 +114,19 @@ document.querySelector("#addUser").addEventListener("click", function (event) {
     events: userEvent,
     dateAdded: firebase.database.ServerValue.TIMESTAMP
   })
-})
 
-firebase.database().ref().on("value", function(snapshot) {
-  document.querySelector("#nameDisplay").html(snapshot.val().name);
-  document.querySelector("#emailDisplay").html(snapshot.val().name);
-  document.querySelector("#countryDisplay").html(snapshot.val().name);
-  document.querySelector("#alertDisplay").html(snapshot.val().name);
-
-
-})
-// 3. Create Firebase event for adding new-user to the database
-database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(childSnapshot) {
-
-  document.querySelector("#nameDisplay").innerHTML= snapshot.val().name;
-  document.querySelector("#emailDisplay").innerHTML = snapshot.val().email;
-  document.querySelector("#countryDisplay").innerHTML = snapshot.val().country;
-  document.querySelector("#alertDisplay").innerHTML = snapshot.val().events;
+  firebase.database().ref().on("value", function(snapshot) {
+    document.querySelector("#nameDisplay").html(snapshot.val().name);
+    document.querySelector("#emailDisplay").html(snapshot.val().name);
+    document.querySelector("#countryDisplay").html(snapshot.val().name);
+    document.querySelector("#alertDisplay").html(snapshot.val().name);
   })
-}
+  // 3. Create Firebase event for adding new-user to the database
+  database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(childSnapshot) {
+
+    document.querySelector("#nameDisplay").innerHTML= snapshot.val().name;
+    document.querySelector("#emailDisplay").innerHTML = snapshot.val().email;
+    document.querySelector("#countryDisplay").innerHTML = snapshot.val().country;
+    document.querySelector("#alertDisplay").innerHTML = snapshot.val().events;
+    })
+})

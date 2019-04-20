@@ -106,17 +106,16 @@ document.querySelector("#addUser").addEventListener("click", function (event) {
     name: userName,
     email: userEmail,
     country: userCountry,
-    events: userEvent
-       };
-
-       // Uploads newuser data to the database
+    events: userEvent,
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+  };
+  // Uploads newuser data to the database
   database.ref().push(newUser);
-
-
 });
 
+firebase
 // 3. Create Firebase event for adding new-user to the database
-database.ref().on("child_added", function(childSnapshot) {
+database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(childSnapshot) {
   console.log(childSnapshot.val());
 
   // Store everything into a variable.
@@ -124,6 +123,8 @@ database.ref().on("child_added", function(childSnapshot) {
   var userEmail = childSnapshot.val().email;
   var userCountry = childSnapshot.val().country;
 }
+
+
 
 // // declare the variables
 // var map, infoWindow;

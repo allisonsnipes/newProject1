@@ -74,7 +74,8 @@ function initMap() {
     zoom: 15
   });
 
-infoWindow = new google.maps.InfoWindow;
+  infoWindow = new google.maps.InfoWindow;
+};
 
 // FIREBASE: initializing Firebase for missing person
 var config = {
@@ -105,26 +106,22 @@ document.querySelector("#addUser").addEventListener("click", function (event) {
   var userEvent = document.querySelector("#commentInput").value.trim();
   
   //push variables created to firebase
-  database.database.ref().push({
+  firebase.database().ref().push({
     //here we set the variables to the specific key to create key/value pairs
-    name:userName,
-    email:userEmail,
-    country:userCountry,
-    events:userEvent,
+    name: userName,
+    email: userEmail,
+    country: userCountry,
+    events: userEvent,
     dateAdded: firebase.database.ServerValue.TIMESTAMP
   })
-  // Uploads newuser data to the database
-  })
-   
-  
-});
+})
 
-database.ref().on("child_added", function(snapshot) {
-  document.querySelector(".well").append(<p> +snapshot.val());
-  // document.querySelector(".well").append(<p> + snapshot.val().country+ <p>);
-  // document.querySelector(".well").append(<p> + snapshot.val().events+ "<p>");
-  // document.querySelector(".well").append("<p>" + snapshot.val().dateAdded+ "<p>");
-  // document.querySelector(".well").append("<hr>");
+firebase.database().ref().on("value", function(snapshot) {
+  document.querySelector("#nameDisplay").html(snapshot.val().name);
+  document.querySelector("#emailDisplay").html(snapshot.val().name);
+  document.querySelector("#countryDisplay").html(snapshot.val().name);
+  document.querySelector("#alertDisplay").html(snapshot.val().name);
+
 
 })
 // 3. Create Firebase event for adding new-user to the database

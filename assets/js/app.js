@@ -24,8 +24,7 @@ function errorCallback(error) {
   alert('ERROR(' + error.code + '): ' + error.message);
 };
 
-//Google API
-// declare the variables
+//Google API start by declare the variables
 var map, infoWindow;
 
 function initMap() {
@@ -36,51 +35,52 @@ function initMap() {
     },
     zoom: 15
   });
-  infoWindow = new google.maps.InfoWindow;
+
+infoWindow = new google.maps.InfoWindow;
 
   // Try HTML5 geolocation.
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function (position) {
+    var pos = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    };
 
-      infoWindow.setPosition(pos);
-      infoWindow.setContent('Missed person last Address');
-      infoWindow.open(map);
-      map.setCenter(pos);
-    }, function () {
-      handleLocationError(true, infoWindow, map.getCenter());
-    });
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
-  }
+    infoWindow.setPosition(pos);
+    infoWindow.setContent('Missed person last Address');
+    infoWindow.open(map);
+    map.setCenter(pos);
+  }, function () {
+    handleLocationError(true, infoWindow, map.getCenter());
+  });
+} else {
+  // Browser doesn't support Geolocation
+  handleLocationError(false, infoWindow, map.getCenter());
+}
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation ?
-    'Error: The Geolocation service failed.' :
-    'Error: Your browser doesn\'t support geolocation.');
-  infoWindow.open(map);
+infoWindow.setPosition(pos);
+infoWindow.setContent(browserHasGeolocation ?
+  'Error: The Geolocation service failed.' :
+  'Error: Your browser doesn\'t support geolocation.');
+infoWindow.open(map);
 }
 
 
- // Initializing Firebase for missing person
-  var config = {
-    apiKey: "AIzaSyBrT_DAlHkM8H0XTeHW7twLnKWGaijaMTk",
-    authDomain: "newproject1-5e689.firebaseapp.com",
-    databaseURL: "https://newproject1-5e689.firebaseio.com",
-    projectId: "newproject1-5e689",
-    storageBucket: "newproject1-5e689.appspot.com",
-    messagingSenderId: "380166051513"
-  };
-  firebase.initializeApp(config);
+// Initializing Firebase for missing person
+var config = {
+  apiKey: "AIzaSyBrT_DAlHkM8H0XTeHW7twLnKWGaijaMTk",
+  authDomain: "newproject1-5e689.firebaseapp.com",
+  databaseURL: "https://newproject1-5e689.firebaseio.com",
+  projectId: "newproject1-5e689",
+  storageBucket: "newproject1-5e689.appspot.com",
+  messagingSenderId: "380166051513"
+};
 
-     
-      var database = firebase.database();
+firebase.initializeApp(config);
+
+var database = firebase.database();
      
 // 2. when sign up button clicks
 document.querySelector("#submit").addEventListener("click", function(event) {

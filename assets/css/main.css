@@ -1,39 +1,15 @@
-/* {
+/* /* {
   font-family: 'Abril Fatface',
   cursive;
   background-color: deepskyblue;
   color: black;
-}
+} */
 
-body {
-  background-color: beige;
-}
-footer {
-  margin: auto;
-  text-align: center;
-  position: fixed;
-  width: 100%;
-  margin-top: 0em;
-  float: bottom;
-  bottom: 0;
-}
-
-
-
-.signIn {
-  margin: auto;
-
-.clearfix {
-  overflow: auto;}*/
-
-/* Always set the map height explicitly to define the size of the div
-* element that contains the map. */
 #map {
   height: 50%;
   width: 50%;
 }
 
-/* Optional: Makes the sample page fill the window. */
 html,
 body {
   height: 100%;
@@ -55,29 +31,3 @@ body {
     color: black;
     text-align: center;
  }
-
-.random-students{
-  border: 2px solid black; 
-  background: #F5DEB3; 
-  width: 50%; 
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: inset 3px 4px  5px 6px #416C6B;
-}
-
-.signup-form{
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-right: 0px;
-  margin-left: 300px;
-  padding: 20px;
-  border: 3px solid #00B5B0;
-  width: 50%;
-  background: #BCC7D9;
-  box-shadow: inset  3px 4px  5px 6px rgba(0, 0, 0, 0.611);
-=======
-.img-fluid{
-  width: 20% ;
-  height:auto;
-
-}

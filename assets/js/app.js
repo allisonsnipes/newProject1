@@ -1,9 +1,9 @@
 // MDN GEOLOCATION API: HTML5 geolocation.
 
 //starts when user clicks within the container
-document.querySelector("#container").addEventListener("click", function(event) {
-  if(event.target.tagName == "BUTTON")
-}
+document.querySelector(".container").addEventListener("click", function(event) {
+  if(event.target.tagName == "BUTTON");
+});
 
 // getscurrentposition method with the parameter of position
 navigator.geolocation.getCurrentPosition(function(position) {
@@ -38,20 +38,28 @@ if (navigator.geolocation) {
     infoWindow.open(map);
     map.setCenter(pos);
   }, function () {
+    var map = new google.maps.Map(document.getElementById("map"), {
+         zoom: 12,
+         center: new google.maps.LatLng(55.755327, 37.622166),
+         mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+
+    google.maps.event.addListenerOnce(map, 'idle', function() {
+      alert(this.getBounds());
+    });
     handleLocationError(true, infoWindow, map.getCenter());
   });
 } else {
   // error handler if the browser doesn't support Geolocation
   handleLocationError(false, infoWindow, map.getCenter());
 }
-}
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation ?
-    'Error: The Geolocation service failed.' :
-    'Error: Your browser doesn\'t support geolocation.');
-  infoWindow.open(map);
+  // infoWindow.setPosition(pos);
+  // infoWindow.setContent(browserHasGeolocation ?
+  //   'Error: The Geolocation service failed.' :
+  //   'Error: Your browser doesn\'t support geolocation.');
+  // infoWindow.open(map);
 }
 
 //Google API: start by declaring the variables
@@ -109,7 +117,7 @@ document.querySelector("#addUser").addEventListener("click", function (event) {
 });
 
 database.ref().on("child_added", function(snapshot) {
-  document.querySelector(".well").append("<p>" + snapshot.val().name+"<p>");
+  document.querySelector(".well").append(snapshot.val().name);
   document.querySelector(".well").append("<p>" + snapshot.val().email+ "<p>");
   document.querySelector(".well").append("<p>" + snapshot.val().country+ "<p>");
   document.querySelector(".well").append("<p>" + snapshot.val().events+ "<p>");
@@ -119,54 +127,10 @@ database.ref().on("child_added", function(snapshot) {
 })
 // 3. Create Firebase event for adding new-user to the database
 database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(childSnapshot) {
-  console.log(childSnapshot.val());
 
-  // Store everything into a variable.
-  var userName = childSnapshot.val().name;
-  var userEmail = childSnapshot.val().email;
-  var userCountry = childSnapshot.val().country;
+  document.querySelector("#nameDisplay").innerHTML= snapshot.val().name;
+  document.querySelector("#emailDisplay").innerHTML = snapshot.val().email;
+  document.querySelector("#countryDisplay").innerHTML = snapshot.val().country;
+  document.querySelector("#alertDisplay").innerHTML = snapshot.val().events;
+  })
 }
-
-
-
-// // declare the variables
-// var map, infoWindow;
-
-// function initMap() {
-//   map = new google.maps.Map(document.getElementById('map'), {
-//     center: {
-//       lat: -34.397,
-//       lng: 150.644
-//     },
-//     zoom: 15
-//   });
-//   infoWindow = new google.maps.InfoWindow;
-
-//   // Try HTML5 geolocation.
-//   if (navigator.geolocation) {
-//     navigator.geolocation.getCurrentPosition(function (position) {
-//       var pos = {
-//         lat: position.coords.latitude,
-//         lng: position.coords.longitude
-//       };
-
-//       infoWindow.setPosition(pos);
-//       infoWindow.setContent('Missed person last Address');
-//       infoWindow.open(map);
-//       map.setCenter(pos);
-//     }, function () {
-//       handleLocationError(true, infoWindow, map.getCenter());
-//     });
-//   } else {
-//     // Browser doesn't support Geolocation
-//     handleLocationError(false, infoWindow, map.getCenter());
-//   }
-// }
-
-// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-//   infoWindow.setPosition(pos);
-//   infoWindow.setContent(browserHasGeolocation ?
-//     'Error: The Geolocation service failed.' :
-//     'Error: Your browser doesn\'t support geolocation.');
-//   infoWindow.open(map);
-// }

@@ -117,6 +117,15 @@ document.querySelector("#addUser").addEventListener("click", function (event) {
     })
   })
 
+//listens to occupy well div with information
+firebase.database().ref().on("child_added", function (snapshot){
+  document.querySelector(".well").append("<p>" + snapshot.val().userName+"<p>");
+  document.querySelector(".well").append("<p>" + snapshot.val().userEmail + "<p>");
+  document.querySelector(".well").append("<p>" + snapshot.val().userCountry + "<p>");
+  document.querySelector(".well").append("<p>" + snapshot.val().userEvent + "<p>");
+  document.querySelector(".well").append("<hr>");
+})
+
 firebase.database().ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
   document.querySelector("#nameDisplay").html(snapshot.val().userName);
   document.querySelector("#emailDisplay").html(snapshot.val().userEmail);

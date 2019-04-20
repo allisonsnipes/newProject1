@@ -109,17 +109,17 @@ document.querySelector("#addUser").addEventListener("click", function (event) {
   //push variables created to firebase
   firebase.database().ref().push({
     //here we set the variables to the specific key to create key/value pairs
-    name: userName,
-    email: userEmail,
-    country: userCountry,
-    events: userEvent,
+    userName: userName,
+    userEmail: userEmail,
+    userCountry: userCountry,
+    userEvent: userEvent,
     dateAdded: firebase.database.ServerValue.TIMESTAMP
     })
   })
 
 firebase.database().ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
-  document.querySelector("#nameDisplay").html(snapshot.val().name);
-  document.querySelector("#emailDisplay").html(snapshot.val().name);
-  document.querySelector("#countryDisplay").html(snapshot.val().name);
-  document.querySelector("#alertDisplay").html(snapshot.val().name);
+  document.querySelector("#nameDisplay").html(snapshot.val().userName);
+  document.querySelector("#emailDisplay").html(snapshot.val().userEmail);
+  document.querySelector("#countryDisplay").html(snapshot.val().userCountry);
+  document.querySelector("#alertDisplay").html(snapshot.val().dateAdded);
 })

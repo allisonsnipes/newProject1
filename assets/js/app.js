@@ -1,7 +1,7 @@
 // MDN GEOLOCATION API: HTML5 geolocation.
 
 //starts when user clicks within the container
-document.querySelector(".container").addEventListener("click", function(event) {
+document.querySelector("container").addEventListener("click", function(event) {
   if(event.target.tagName == "BUTTON");
 });
 
@@ -97,14 +97,14 @@ var userCountry = "";
 var userEvent = "";
 // var database = firebase.database();
 
-document.querySelector("#addUser").addEventListener("click", function (event) {
+document.querySelector("addUser").addEventListener("click", function (event) {
   event.preventDefault();
 
   // Grabs user values enter by elements
-  userName = document.querySelector("#nameInput").value.trim();
-  userEmail = document.querySelector("#emailInput").value.trim();
-  userCountry = document.querySelector("#countySelection").value.trim();
-  userEvent = document.querySelector("#commentInput").value.trim();
+  userName = document.querySelector("nameInput").value.trim();
+  userEmail = document.querySelector("emailInput").value.trim();
+  userCountry = document.querySelector("countySelection").value.trim();
+  userEvent = document.querySelector("commentInput").value.trim();
   
   //push variables created to firebase
   firebase.database().ref().push({
@@ -119,23 +119,23 @@ document.querySelector("#addUser").addEventListener("click", function (event) {
 
 //listens to occupy well div with information
 firebase.database().ref().on("child_added", function (snapshot){
-  document.querySelector(".well").append("Name: " + snapshot.val().userName+ "  ");
-  document.querySelector(".well").append("\n\n\n");
-  document.querySelector(".well").append("User email: " + snapshot.val().userEmail + " ");
-  document.querySelector(".well").append("\n\n\n");
-  document.querySelector(".well").append("Resident Country: " + snapshot.val().userCountry + " ");
-  document.querySelector(".well").append("\n\n\n");
-  document.querySelector(".well").append("Alert: " + snapshot.val().userEvent + " ");
-  document.querySelector(".well").append("\n\n\n");
+  document.querySelector("well").append("Name: " + snapshot.val().userName+ "  ");
+  document.querySelector("well").append("\n\n\n");
+  document.querySelector("well").append("User email: " + snapshot.val().userEmail + " ");
+  document.querySelector("well").append("\n\n\n");
+  document.querySelector("well").append("Resident Country: " + snapshot.val().userCountry + " ");
+  document.querySelector("well").append("\n\n\n");
+  document.querySelector("well").append("Alert: " + snapshot.val().userEvent + " ");
+  document.querySelector("well").append("\n\n\n");
 })
 
 firebase.database().ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
-  document.querySelector("#nameDisplay").html(snapshot.val().userName);
- document.querySelector(".well").append("\n\n\n");
-  document.querySelector("#emailDisplay").html(snapshot.val().userEmail);
-  document.querySelector(".well").append("\n\n\n");
-  document.querySelector("#countryDisplay").html(snapshot.val().userCountry);
-  document.querySelector(".well").append("\n\n\n");
-  document.querySelector("#alertDisplay").html(snapshot.val().dateAdded);
-  document.querySelector(".well").append("\n\n\n");
+  document.querySelector("nameDisplay").html(snapshot.val().userName);
+ document.querySelector("well").append("\n\n\n");
+  document.querySelector("emailDisplay").html(snapshot.val().userEmail);
+  document.querySelector("well").append("\n\n\n");
+  document.querySelector("countryDisplay").html(snapshot.val().userCountry);
+  document.querySelector("well").append("\n\n\n");
+  document.querySelector("alertDisplay").html(snapshot.val().dateAdded);
+  document.querySelector("well").append("\n\n\n");
 })
